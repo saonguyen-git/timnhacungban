@@ -1,0 +1,456 @@
+{
+  "tp-ho-chi-minh": {
+    "geo_region": "VN-SG",
+    "geo": "10.8230989,106.6296638",
+    "name": "Tp Hồ Chí Minh",
+    "area": {
+      "quan-1": {
+        "id": "13096",
+        "name": "Quận 1",
+        "name_url": "quan-1",
+        "geo_region": "VN-SG",
+        "geo": "10.7756587,106.7004238"
+      },
+      "quan-2": {
+        "id": "13097",
+        "name": "Quận 2",
+        "name_url": "quan-2",
+        "geo_region": "VN-SG",
+        "geo": "10.7872729,106.7498105"
+      },
+      "quan-3": {
+        "id": "13098",
+        "name": "Quận 3",
+        "name_url": "quan-3",
+        "geo_region": "VN-SG",
+        "geo": "10.7843695,106.6844089"
+      },
+      "quan-4": {
+        "id": "13099",
+        "name": "Quận 4",
+        "name_url": "quan-4",
+        "geo_region": "VN-SG",
+        "geo": "10.7578263,106.7012968"
+      },
+      "quan-5": {
+        "id": "13100",
+        "name": "Quận 5",
+        "name_url": "quan-5",
+        "geo_region": "VN-SG",
+        "geo": "10.7540279,106.6633746"
+      },
+      "quan-6": {
+        "id": "13101",
+        "name": "Quận 6",
+        "name_url": "quan-6",
+        "geo_region": "VN-SG",
+        "geo": "10.7480929,106.6352362"
+      },
+      "quan-7": {
+        "id": "13102",
+        "name": "Quận 7",
+        "name_url": "quan-7",
+        "geo_region": "VN-SG",
+        "geo": "10.7340344,106.7215787"
+      },
+      "quan-8": {
+        "id": "13103",
+        "name": "Quận 8",
+        "name_url": "quan-8",
+        "geo_region": "VN-SG",
+        "geo": "10.7240878,106.6286259"
+      },
+      "quan-9": {
+        "id": "13104",
+        "name": "Quận 9",
+        "name_url": "quan-9",
+        "geo_region": "VN-SG",
+        "geo": "10.8428402,106.8286851"
+      },
+      "quan-10": {
+        "id": "13105",
+        "name": "Quận 10",
+        "name_url": "quan-10",
+        "geo_region": "VN-SG",
+        "geo": "10.7745965,106.6679542"
+      },
+      "quan-11": {
+        "id": "13106",
+        "name": "Quận 11",
+        "name_url": "quan-11",
+        "geo_region": "VN-SG",
+        "geo": "10.7629739,106.650084"
+      },
+      "quan-12": {
+        "id": "13107",
+        "name": "Quận 12",
+        "name_url": "quan-12",
+        "geo_region": "VN-SG",
+        "geo": "10.8671531,106.6413322"
+      },
+      "quan-binh-tan": {
+        "id": "13108",
+        "name": "Quận Bình Tân",
+        "name_url": "quan-binh-tan",
+        "geo_region": "VN-SG",
+        "geo": "10.7652581,106.6038535"
+      },
+      "quan-binh-thanh": {
+        "id": "13109",
+        "name": "Quận Bình Thạnh",
+        "name_url": "quan-binh-thanh",
+        "geo_region": "VN-SG",
+        "geo": "10.8105831,106.7091422"
+      },
+      "quan-go-vap": {
+        "id": "13110",
+        "name": "Quận Gò Vấp",
+        "name_url": "quan-go-vap",
+        "geo_region": "VN-SG",
+        "geo": "10.8386779,106.6652904"
+      },
+      "quan-phu-nhuan": {
+        "id": "13111",
+        "name": "Quận Phú Nhuận",
+        "name_url": "quan-phu-nhuan",
+        "geo_region": "VN-SG",
+        "geo": "10.7991944,106.6802639"
+      },
+      "quan-tan-binh": {
+        "id": "13112",
+        "name": "Quận Tân Bình",
+        "name_url": "quan-tan-binh",
+        "geo_region": "VN-SG",
+        "geo": "10.8014659,106.6525974"
+      },
+      "quan-tan-phu": {
+        "id": "13113",
+        "name": "Quận Tân Phú",
+        "name_url": "quan-tan-phu",
+        "geo_region": "VN-SG",
+        "geo": "10.7900517,106.6281901"
+      },
+      "quan-thu-duc": {
+        "id": "13114",
+        "name": "Quận Thủ Đức",
+        "name_url": "quan-thu-duc",
+        "geo_region": "VN-SG",
+        "geo": "10.8494094,106.7537055"
+      },
+      "huyen-binh-chanh": {
+        "id": "13115",
+        "name": "Huyện Bình Chánh",
+        "name_url": "huyen-binh-chanh",
+        "geo_region": "VN-SG",
+        "geo": "10.687392,106.5938538"
+      },
+      "huyen-can-gio": {
+        "id": "13120",
+        "name": "Huyện Cần Giờ",
+        "name_url": "huyen-can-gio",
+        "geo_region": "VN-SG",
+        "geo": "10.5083266,106.8635004"
+      },
+      "huyen-cu-chi": {
+        "id": "13116",
+        "name": "Huyện Củ Chi",
+        "name_url": "huyen-cu-chi",
+        "geo_region": "VN-SG",
+        "geo": "11.0066683,106.5131967"
+      },
+      "huyen-hoc-mon": {
+        "id": "13117",
+        "name": "Huyện Hóc Môn",
+        "name_url": "huyen-hoc-mon",
+        "geo_region": "VN-SG",
+        "geo": "10.8839675,106.5870611"
+      },
+      "huyen-nha-be": {
+        "id": "13118",
+        "name": "Huyện Nhà Bè",
+        "name_url": "huyen-nha-be",
+        "geo_region": "VN-SG",
+        "geo": "10.6952642,106.704874"
+      }
+    },
+    "name_url": "tp-ho-chi-minh",
+    "id": "13000"
+  },
+  "ha-noi": {
+    "geo_region": "VN-HN",
+    "geo": "21.0277644,105.8341598",
+    "name": "Hà Nội",
+    "area": {
+      "quan-ba-dinh": {
+        "id": "12074",
+        "name": "Quận Ba Đình",
+        "name_url": "quan-ba-dinh",
+        "geo_region": "VN-HN",
+        "geo": "21.0337815,105.8140539"
+      },
+      "quan-bac-tu-liem": {
+        "id": "12129",
+        "name": "Quận Bắc Từ Liêm",
+        "name_url": "quan-bac-tu-liem",
+        "geo_region": "VN-HN",
+        "geo": "21.0730201,105.7703287"
+      },
+      "quan-cau-giay": {
+        "id": "12079",
+        "name": "Quận Cầu Giấy",
+        "name_url": "quan-cau-giay",
+        "geo_region": "VN-HN",
+        "geo": "21.0362368,105.7905825"
+      },
+      "quan-dong-da": {
+        "id": "12075",
+        "name": "Quận Đống Đa",
+        "name_url": "quan-dong-da",
+        "geo_region": "VN-HN",
+        "geo": "21.0180725,105.8299495"
+      },
+      "quan-ha-dong": {
+        "id": "12086",
+        "name": "Quận Hà Đông",
+        "name_url": "quan-ha-dong",
+        "geo_region": "VN-HN",
+        "geo": "20.955835,105.7563658"
+      },
+      "quan-hai-ba-trung": {
+        "id": "12076",
+        "name": "Quận Hai Bà Trưng",
+        "name_url": "quan-hai-ba-trung",
+        "geo_region": "VN-HN",
+        "geo": "21.0090571,105.8607507"
+      },
+      "quan-hoan-kiem": {
+        "id": "12073",
+        "name": "Quận Hoàn Kiếm",
+        "name_url": "quan-hoan-kiem",
+        "geo_region": "VN-HN",
+        "geo": "21.027964,105.8510132"
+      },
+      "quan-hoang-mai": {
+        "id": "12080",
+        "name": "Quận Hoàng Mai",
+        "name_url": "quan-hoang-mai",
+        "geo_region": "VN-HN",
+        "geo": "20.9836984,105.8636257"
+      },
+      "quan-long-bien": {
+        "id": "12081",
+        "name": "Quận Long Biên",
+        "name_url": "quan-long-bien",
+        "geo_region": "VN-HN",
+        "geo": "21.0548635,105.8884966"
+      },
+      "quan-nam-tu-liem": {
+        "id": "12121",
+        "name": "Quận Nam Từ Liêm",
+        "name_url": "quan-nam-tu-liem",
+        "geo_region": "VN-HN",
+        "geo": "21.0034608,105.7703287"
+      },
+      "quan-tay-ho": {
+        "id": "12078",
+        "name": "Quận Tây Hồ",
+        "name_url": "quan-tay-ho",
+        "geo_region": "VN-HN",
+        "geo": "21.0811211,105.8180306"
+      },
+      "quan-thanh-xuan": {
+        "id": "12077",
+        "name": "Quận Thanh Xuân",
+        "name_url": "quan-thanh-xuan",
+        "geo_region": "VN-HN",
+        "geo": "20.9959819,105.8097244"
+      },
+      "huyen-ba-vi": {
+        "id": "12122",
+        "name": "Huyện Ba Vì",
+        "name_url": "huyen-ba-vi",
+        "geo_region": "VN-HN",
+        "geo": "21.1992298,105.4232116"
+      },
+      "huyen-chuong-my": {
+        "id": "12092",
+        "name": "Huyện Chương Mỹ",
+        "name_url": "huyen-chuong-my",
+        "geo_region": "VN-HN",
+        "geo": "20.8746466,105.6712465"
+      },
+      "huyen-dan-phuong": {
+        "id": "12088",
+        "name": "Huyện Đan Phượng",
+        "name_url": "huyen-dan-phuong",
+        "geo_region": "VN-HN",
+        "geo": "21.084855,105.6690963"
+      },
+      "huyen-dong-anh": {
+        "id": "12082",
+        "name": "Huyện Đông Anh",
+        "name_url": "huyen-dong-anh",
+        "geo_region": "VN-HN",
+        "geo": "21.1245303,105.8271398"
+      },
+      "huyen-gia-lam": {
+        "id": "12123",
+        "name": "Huyện Gia Lâm",
+        "name_url": "huyen-gia-lam",
+        "geo_region": "VN-HN",
+        "geo": "21.0105208,105.952941"
+      },
+      "huyen-hoai-duc": {
+        "id": "12089",
+        "name": "Huyện Hoài Đức",
+        "name_url": "huyen-hoai-duc",
+        "geo_region": "VN-HN",
+        "geo": "21.0243168,105.6988892"
+      },
+      "huyen-me-linh": {
+        "id": "12124",
+        "name": "Huyện Mê Linh",
+        "name_url": "huyen-me-linh",
+        "geo_region": "VN-HN",
+        "geo": "21.1753431,105.7308045"
+      },
+      "huyen-my-duc": {
+        "id": "12125",
+        "name": "Huyện Mỹ Đức",
+        "name_url": "huyen-my-duc",
+        "geo_region": "VN-HN",
+        "geo": "20.725768,105.7157513"
+      },
+      "huyen-phu-xuyen": {
+        "id": "12094",
+        "name": "Huyện Phú Xuyên",
+        "name_url": "huyen-phu-xuyen",
+        "geo_region": "VN-HN",
+        "geo": "20.7280728,105.9029374"
+      },
+      "huyen-phuc-tho": {
+        "id": "12126",
+        "name": "Huyện Phúc Thọ",
+        "name_url": "huyen-phuc-tho",
+        "geo_region": "VN-HN",
+        "geo": "21.1241396,105.5939066"
+      },
+      "huyen-quoc-oai": {
+        "id": "12090",
+        "name": "Huyện Quốc Oai",
+        "name_url": "huyen-quoc-oai",
+        "geo_region": "VN-HN",
+        "geo": "20.9924634,105.6404254"
+      },
+      "huyen-soc-son": {
+        "id": "12083",
+        "name": "Huyện Sóc Sơn",
+        "name_url": "huyen-soc-son",
+        "geo_region": "VN-HN",
+        "geo": "21.2573126,105.8480203"
+      },
+      "huyen-thach-that": {
+        "id": "12091",
+        "name": "Huyện Thạch Thất",
+        "name_url": "huyen-thach-that",
+        "geo_region": "VN-HN",
+        "geo": "20.9905234,105.5251894"
+      },
+      "huyen-thanh-oai": {
+        "id": "12127",
+        "name": "Huyện Thanh Oai",
+        "name_url": "huyen-thanh-oai",
+        "geo_region": "VN-HN",
+        "geo": "20.8532165,105.7688513"
+      },
+      "huyen-thanh-tri": {
+        "id": "12084",
+        "name": "Huyện Thanh Trì",
+        "name_url": "huyen-thanh-tri",
+        "geo_region": "VN-HN",
+        "geo": "20.9344418,105.8462288"
+      },
+      "huyen-thuong-tin": {
+        "id": "12093",
+        "name": "Huyện Thường Tín",
+        "name_url": "huyen-thuong-tin",
+        "geo_region": "VN-HN",
+        "geo": "20.8055441,105.8838579"
+      },
+      "huyen-ung-hoa": {
+        "id": "12128",
+        "name": "Huyện Ứng Hòa",
+        "name_url": "huyen-ung-hoa",
+        "geo_region": "VN-HN",
+        "geo": "20.729614,105.7782061"
+      },
+      "thi-xa-son-tay": {
+        "id": "12087",
+        "name": "Thị xã Sơn Tây",
+        "name_url": "thi-xa-son-tay",
+        "geo_region": "VN-HN",
+        "geo": "21.1162257,105.495325"
+      }
+    },
+    "name_url": "ha-noi",
+    "id": "12000"
+  },
+  "da-nang": {
+    "geo_region": "VN-DN",
+    "geo": "16.0544068,108.2021667",
+    "name": "Đà Nẵng",
+    "area": {
+      "quan-cam-le": {
+        "id": "301706",
+        "name": "Quận Cẩm Lệ",
+        "name_url": "quan-cam-le",
+        "geo_region": "VN-DN",
+        "geo": "16.0153669,108.1962362"
+      },
+      "quan-hai-chau": {
+        "id": "301703",
+        "name": "Quận Hải Châu",
+        "name_url": "quan-hai-chau",
+        "geo_region": "VN-DN",
+        "geo": "16.0472002,108.2199588"
+      },
+      "quan-lien-chieu": {
+        "id": "301701",
+        "name": "Quận Liên Chiểu",
+        "name_url": "quan-lien-chieu",
+        "geo_region": "VN-DN",
+        "geo": "16.0717704,108.1503823"
+      },
+      "quan-ngu-hanh-son": {
+        "id": "301705",
+        "name": "Quận Ngũ Hành Sơn",
+        "name_url": "quan-ngu-hanh-son",
+        "geo_region": "VN-DN",
+        "geo": "15.9955056,108.2588049"
+      },
+      "quan-son-tra": {
+        "id": "301704",
+        "name": "Quận Sơn Trà",
+        "name_url": "quan-son-tra",
+        "geo_region": "VN-DN",
+        "geo": "16.1069981,108.2521815"
+      },
+      "quan-thanh-khe": {
+        "id": "301702",
+        "name": "Quận Thanh Khê",
+        "name_url": "quan-thanh-khe",
+        "geo_region": "VN-DN",
+        "geo": "16.0641802,108.1873407"
+      },
+      "huyen-hoa-vang": {
+        "id": "301707",
+        "name": "Huyện Hòa Vang",
+        "name_url": "huyen-hoa-vang",
+        "geo_region": "VN-DN",
+        "geo": "15.999988,108.1457994"
+      }
+    },
+    "name_url": "da-nang",
+    "id": "3017"
+  }
+}
