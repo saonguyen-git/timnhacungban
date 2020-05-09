@@ -5,14 +5,14 @@ namespace App\Console\Commands;
 use App\Http\Controllers\GetDataChototController;
 use Illuminate\Console\Command;
 
-class RunAutoGetPost extends Command
+class GetDataMuaBan extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'run-auto';
+    protected $signature = 'run-muaban';
 
     /**
      * The console command description.
@@ -38,10 +38,6 @@ class RunAutoGetPost extends Command
      */
     public function handle(GetDataChototController $controller)
     {
-        $controller->GetData(1, 12000);
-        $controller->GetData(1, 13000);
-        $controller->GetData(1, 3017);
-//        $controller->GetDataMuaBan(1,1);
-//        $controller->GetDataMuaBan(1,2);
+        $controller->GetDataMuaBan(2,1);
     }
 }

@@ -1,133 +1,7 @@
-@section('page-title')<?php echo 'Trang chủ | phongtrosinhvien.com | Phòng trọ sinh viên | Sinh viên tìm nhà trọ | Phòng trọ cho thuê | Nhà trọ Hà Nội | Nhà trọ Sài Gòn';?>@endsection
-@section('page-description')<?php echo 'Sau dịch bện covid 19. Sinh viên cả nước lại tiếp tục nhập học, do vậy nhu cầu trở lại các trường tăng cao dẫn đến nhu cầu tìm nhà trọ tăng cao. Phongtrosinhvien.com sẽ cung cấp cho các bạn sinh viên những tin nhà trọ mới nhất, chính xác nhất và hoàn toàn miễn phí';?>@endsection
+@section('page-title')<?php echo 'Trang chủ | timnhacungban.com | Phòng trọ sinh viên | Sinh viên tìm nhà trọ | Phòng trọ cho thuê | Nhà trọ Hà Nội | Nhà trọ Sài Gòn | Tìm nhà trọ';?>@endsection
+@section('page-description')<?php echo 'Do nhu cầu tìm nhà trọ tăng cao, timnhacungban.com sẽ cung cấp cho các bạn sinh viên những tin nhà trọ mới nhất, chính xác nhất và hoàn toàn miễn phí';?>@endsection
 @include('header')
-<style>
-    .content {
-        padding: 90px 0;
-    }
-
-    .content .entry-title {
-        margin: 0;
-        line-height: 1;
-        text-transform: uppercase;
-        font-weight: bold;
-        width: 100%;
-        background-color: #006837;
-        padding: 10px 15px;
-        color: #fff;
-        font-size: 20px;
-    }
-
-    .content .list-item {
-        margin-top: 30px;
-    }
-
-    .content .item {
-        padding: 15px;
-        border: 2px solid #e5e5e5;
-        margin-bottom: 30px;
-        transition: .5s;
-    }
-
-    .content .item-thumbnail {
-        overflow: hidden;
-        max-height: 130px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .content .item .title {
-        margin: 0;
-        font-weight: 700;
-        font-size: 20px;
-    }
-
-    .content .item .desc {
-        clear: both;
-    }
-
-    .content .item .author i {
-        font-size: 20px;
-    }
-
-    .content .item .price {
-        display: inline-block;
-        width: 100%;
-        margin: 7px 0;
-        font-weight: 700;
-        color: #c90927;
-    }
-
-    .content .item .sub-info {
-        display: flex;
-        align-items: center;
-        color: #999;
-        margin-bottom: 0;
-    }
-
-    .content .item .sub-info .sur {
-        display: inline-block;
-        padding: 0;
-        width: 1px;
-        height: 14px;
-        background: #999;
-        margin: 0 5px;
-    }
-
-    .content .item .item-thumbnail {
-        padding: 0;
-    }
-    .content .item:hover {
-        border: 2px solid #006837;
-    }
-    .content .item:hover> .item-content .title a {
-        text-decoration: none;
-        color: #006837;
-    }
-    @media only screen and (max-width: 480px) {
-        .content{
-            padding: 45px 0;
-        }
-        .content .row {
-            margin: 0;
-        }
-        .content .entry-title {
-            line-height: 1.425;
-            width: auto;
-            margin: 0 -15px;
-        }
-        .content .list-item {
-           margin-top: 15px;
-        }
-        .content .list-item .item-content{
-            padding: 0;
-        }
-        .content .item .title {
-            margin-top: 10px;
-            line-height: 1.425;
-            font-size: 18px;
-        }
-        .content .item .sub-info {
-            font-size: 11px;
-            justify-content: space-between;
-        }
-        .content .item .sub-info .author {
-            display: flex;
-            align-items: center;
-        }
-        .content .item .author i {
-            font-size: 18px;
-            padding-right: 5px;
-        }
-        .content .item .sub-info .sur {
-            margin: 0;
-        }
-        .pagination .btn {
-            margin: 5px;
-        }
-    }
-</style>
+<style>.content{padding:90px 0}.content .entry-title{margin:0;line-height:1;text-transform:uppercase;font-weight:700;width:100%;background-color:#006837;padding:10px 15px;color:#fff;font-size:20px}.content .list-item{margin-top:30px}.content .item{padding:15px;border:2px solid #e5e5e5;margin-bottom:30px;transition:.5s}.content .item-thumbnail{overflow:hidden;max-height:130px;display:flex;justify-content:center;align-items:center}.content .item .title{margin:0;font-weight:700;font-size:20px}.content .item .desc{clear:both}.content .item .author i{font-size:20px}.content .item .price{display:inline-block;width:100%;margin:7px 0;font-weight:700;color:#c90927}.content .item .sub-info{display:flex;align-items:center;color:#999;margin-bottom:0}.content .item .sub-info .sur{display:inline-block;padding:0;width:1px;height:14px;background:#999;margin:0 5px}.content .item .item-thumbnail{padding:0}.content .item:hover{border:2px solid #006837}.content .item:hover>.item-content .title a{text-decoration:none;color:#006837}@media only screen and (max-width:480px){.content{padding:45px 0}.content .row{margin:0}.content .entry-title{line-height:1.425;width:auto}.content .list-item{margin-top:15px}.content .list-item .item-content{padding:0}.content .item .title{margin-top:10px;line-height:1.425;font-size:18px}.content .item .sub-info{font-size:11px;justify-content:space-between}.content .item .sub-info .author{display:flex;align-items:center}.content .item .author i{font-size:18px;padding-right:5px}.content .item .sub-info .sur{margin:0}.pagination .btn{margin:5px}}</style>
 <div class="col-xs-12 content">
     <div class="container no-padding">
         <div class="row">
@@ -160,6 +34,7 @@
                                     <p class="desc">
                                         <?php
                                         $desc = $item->body;
+                                        $desc = urldecode($desc);
                                         $chars_limit = 200;
                                         if (strlen($desc) > $chars_limit) {
                                             $rpos = strrpos(substr($desc, 0, $chars_limit), " ");
@@ -176,6 +51,7 @@
                                     <?php
                                     $created_at = $item->created_at;
                                     $date_now = date("Y-m-d H:i:s");
+                                    //var_dump($date_now);
                                     $theDiff = "";
                                     $datetime1 = date_create($created_at);
                                     $datetime2 = date_create($date_now);
@@ -221,7 +97,7 @@
                 @if(count($value) <= 10)
                     <div class="col-xs-12 text-center pagination">
                         <?php
-                        $current_url = url('/');
+                        $current_url = $url_page;
                         $page = $current_page;
                         ?>
                         @if($page != 1)
@@ -248,17 +124,17 @@
                         @for ($i = $min ; $i <= $max; $i++)
                             @if($i <= $total && $i > 0)
                                 <a class="btn btn-default <?php if($page == $i) { ?> active <?php } ?>"
-                                   href="{{url('/')}}?page={{$i}}" data-page="{{$i}}" title="Trang {{$i}}">
+                                   href="{{$url_page}}page={{$i}}" data-page="{{$i}}" title="Trang {{$i}}">
                                     {{$i}}
                                 </a>
                             @endif
                         @endfor
 
                         @if($page != $total)
-                            <a class="btn btn-default" href="{{$current_url}}?page={{$page + 1}}"
+                            <a class="btn btn-default" href="{{$current_url}}page={{$page + 1}}"
                                data-page="{{$page + 1}}" title="Trang tiếp theo"> <i class="fa fa-angle-right"
                                                                                      aria-hidden="true"></i> </a>
-                            <a class="btn btn-default" href="{{$current_url}}?page={{$total}}"
+                            <a class="btn btn-default" href="{{$current_url}}page={{$total}}"
                                data-page="{{$total}}" title="Trang cuối cùng">
                                 <i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
                         @endif

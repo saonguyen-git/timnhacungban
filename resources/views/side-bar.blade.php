@@ -1,96 +1,39 @@
-<style>
-    .content-right .sidebar {
-        padding-right: 15px;
-    }
-
-    .sidebar-content {
-        border: 2px solid #e5e5e5;
-        margin-top: 30px;
-        padding: 15px;
-    }
-
-    .sidebar-content .filter-title {
-        margin: 0;
-        font-weight: 600;
-        text-transform: uppercase;
-        line-height: 1;
-    }
-
-    .filter-form {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-top: 15px;
-    }
-
-    .filter-form input {
-        border-radius: 0;
-        border: 1px solid #e5e5e5;
-        box-shadow: none;
-        width: 45%;
-        height: 30px;
-    }
-
-    .sidebar-button {
-        margin-top: 30px;
-    }
-
-    .bt-filter {
-        border-radius: 0;
-        font-weight: 700;
-        text-transform: uppercase;
-        font-size: 12px;
-        border: 1px solid #006837;
-        background-color: #006837;
-        color: #fff;
-        padding: 0;
-        line-height: 30px;
-        width: 100%;
-        transition: .5s;
-    }
-
-    .bt-filter:hover {
-        background-color: #fff;
-        color: #006837;
-    }
-</style>
+<style>.content-right .sidebar{padding-right:15px}.list-price{margin:0;padding:0}.list-price li.item-price{float:left;width:100%;list-style:none;margin-top:15px}.list-price li.item-price a{display:inline-block;line-height:40px;padding:0 15px;border:1px solid #e5e5e5;width:100%;text-decoration:none;font-weight:700;color:#333;transition:.5s}.list-price li.item-price a:hover,.list-price li.item-price.active a{color:#006837;border:1px solid #006837}</style>
 <div class="full-width sidebar hidden-xs">
-    <h3 class="entry-title">Bộ lọc nâng cao</h3>
-    <div class="sidebar-content">
-        <p class="filter-title">Lọc theo khoảng giá: </p>
-        <div class="filter-form">
-            <input type="number" name="price_from" class="form-control price_from" placeholder=""/>
-            <span>-</span>
-            <input type="number" name="price_to" class="form-control price_to"/>
-        </div>
-    </div>
+    <h3 class="entry-title">Lọc theo khoảng giá</h3>
+    <ul class="list-price">
+        <?php
+        $list_price = array(
+            '&min_price=0&max_price=1000000' => 'Dưới 1.000.000 đ',
+            '&min_price=1000000&max_price=2000000' => '1.000.000 đ - 2.000.000 đ',
+            '&min_price=2000000&max_price=3000000' => '2.000.000 đ - 3.000.000 đ',
+            '&min_price=3000000&max_price=4000000' => '3.000.000 đ - 4.000.000 đ',
+            '&min_price=4000000&max_price=5000000' => '4.000.000 đ - 5.000.000 đ',
+            '&min_price=5000000&max_price=150000000' => 'Trên 5.000.000 đ',
+        );
+        $check_key = '';
+        if (!empty($_GET['min_price'])) {
+            $min_price = $_GET['min_price'];
+            $max_price = $_GET['max_price'];
+            $check_key = "&min_price=$min_price&max_price=$max_price";
+        }
 
-    <div class="sidebar-content">
-        <p class="filter-title">Lọc theo diện tích: </p>
-        <div class="filter-form">
-            <input type="number" name="size_from" class="form-control size_from" placeholder=""/>
-            <span>-</span>
-            <input type="number" name="size_to" class="form-control size_to"/>
-        </div>
-    </div>
-
-    <div class="sidebar-content">
-        <p class="filter-title">Lọc theo ngày đăng: </p>
-        <div class="filter-form">
-            <input type="text" name="date_from" class="form-control datepicker date_from" placeholder=""/>
-            <span>-</span>
-            <input type="text" name="date_to" class="form-control datepicker date_to"/>
-        </div>
-    </div>
-    <div class="full-width sidebar-button text-center">
-        <button class="btn btn-default bt-filter">Áp dụng</button>
-    </div>
+        ?>
+        @foreach( $list_price as $key=>$value)
+            <?php
+            $class_active = '';
+            if ($check_key === $key) {
+                $class_active = 'active';
+            }
+            ?>
+            <li class="item-price {{$class_active}}"><a href="{{$url_price}}{{$key}}"> {{$value}} </a></li>
+        @endforeach
+    </ul>
 </div>
 
 <div id="modal_filter" class="modal fade" role="dialog">
     <div class="modal-dialog container">
 
-        <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -98,36 +41,7 @@
             </div>
             <div class="modal-body">
                 <div class="full-width sidebar">
-                    <h3 class="entry-title">Bộ lọc nâng cao</h3>
-                    <div class="sidebar-content">
-                        <p class="filter-title">Lọc theo khoảng giá: </p>
-                        <div class="filter-form">
-                            <input type="number" name="price_from" class="form-control price_from" placeholder=""/>
-                            <span>-</span>
-                            <input type="number" name="price_to" class="form-control price_to"/>
-                        </div>
-                    </div>
 
-                    <div class="sidebar-content">
-                        <p class="filter-title">Lọc theo diện tích: </p>
-                        <div class="filter-form">
-                            <input type="number" name="size_from" class="form-control size_from" placeholder=""/>
-                            <span>-</span>
-                            <input type="number" name="size_to" class="form-control size_to"/>
-                        </div>
-                    </div>
-
-                    <div class="sidebar-content">
-                        <p class="filter-title">Lọc theo ngày đăng: </p>
-                        <div class="filter-form">
-                            <input type="text" name="date_from" class="form-control datepicker date_from" placeholder=""/>
-                            <span>-</span>
-                            <input type="text" name="date_to" class="form-control datepicker date_to"/>
-                        </div>
-                    </div>
-                    <div class="full-width sidebar-button text-center">
-                        <button class="btn btn-default bt-filter">Áp dụng</button>
-                    </div>
                 </div>
             </div>
             <div class="modal-footer">

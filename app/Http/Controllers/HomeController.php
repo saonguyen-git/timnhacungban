@@ -9,7 +9,15 @@ class HomeController extends Controller
 {
     function __construct()
     {
-
+//        try {
+//            $login = $_GET['login'];
+//            if ($login != 0) {
+//                $this->middleware('auth');
+//            }
+//        } catch (\Exception $e) {
+//            $this->middleware('auth');
+//        }
+        $this->Link_price();
     }
 
     public function homePage()
@@ -19,12 +27,43 @@ class HomeController extends Controller
             $page = $_GET['page'];
         }
         $limit = 10;
+        $query = '';
+        $url_current = url('/').'?';
+
+        if(!empty($_GET['min_price']) && !empty($_GET['max_price'])) {
+            $min_price = $_GET['min_price'];
+            $max_price = $_GET['max_price'];
+            $query .= "AND price >= $min_price AND price <= $max_price";
+            $url_current = url('/')."?min_price=$min_price&max_price=$max_price&";
+        }
+
         $page_limit = ($page - 1) * $limit;
-        $getDB = DB::select(DB::raw("SELECT * FROM nha_tro WHERE stt=1 ORDER BY created_at DESC LIMIT $page_limit, $limit"));
-        $total = DB::select(DB::raw("SELECT COUNT(*) FROM nha_tro WHERE stt=1"));
+        $getDB = DB::select(DB::raw("SELECT * FROM nha_tro WHERE stt=1 ORDER BY created_at $query DESC LIMIT $page_limit, $limit"));
+        $total = DB::select(DB::raw("SELECT COUNT(*) FROM nha_tro WHERE  stt=1 $query"));
         $total = $total[0]->{'COUNT(*)'};
 
-        return view('home', ['total' => $total, 'current_page' => $page, 'value' => $getDB]);
+        return view('home', ['total' => $total, 'current_page' => $page, 'value' => $getDB,'url_page'=>$url_current]);
+    }
+
+    public function Link_price()
+    {
+        $url_current = url()->full();
+
+        if (!empty($_GET['min_price'])) {
+            $min_price = $_GET['min_price'];
+            $max_price = $_GET['max_price'];
+            $url_price = str_replace("&min_price=$min_price&max_price=$max_price",'',$url_current);
+            $url_price = str_replace("&max_price=$max_price&min_price=$min_price",'',$url_price);
+        } else {
+            //var_dump($url_current);
+            if(strpos($url_current,'?') !== false){
+                $url_price = $url_current.'&filter=price';
+               // var_dump($url_current);
+            }else{
+                $url_price = $url_current.'?filter=price';
+            }
+        }
+        view()->share(['url_price'=>$url_price]);
     }
 
     public function get_position(Request $request)
@@ -66,19 +105,24 @@ class HomeController extends Controller
 
     public function get_detail($slug, $id)
     {
-        $get_detail = DB::select(DB::raw("SELECT * FROM nha_tro WHERE id_product = $id"));
-        $area = $get_detail[0]->area_name;
-        $ward_name = $get_detail[0]->ward_name;
-        $get_relate = DB::select(DB::raw("SELECT * FROM nha_tro WHERE area_name = N'$area' ORDER BY `created_at` DESC LIMIT 0,12"));
-        $get_ward = DB::select(DB::raw("SELECT * FROM nha_tro WHERE ward_name = N'$ward_name' ORDER BY `created_at` DESC LIMIT 0,10"));
-        return view('detail', ['get_detail' => $get_detail[0], 'get_relate' => $get_relate, 'get_ward' => $get_ward]);
+        $get_detail = DB::select(DB::raw("SELECT * FROM nha_tro WHERE id_product = '$id'"));
+        if (!empty($get_detail)) {
+            $area = $get_detail[0]->area_name;
+            $ward_name = $get_detail[0]->ward_name;
+            $get_relate = DB::select(DB::raw("SELECT * FROM nha_tro WHERE area_name = N'$area' ORDER BY `created_at` DESC LIMIT 0,12"));
+            $get_ward = DB::select(DB::raw("SELECT * FROM nha_tro WHERE ward_name = N'$ward_name' ORDER BY `created_at` DESC LIMIT 0,10"));
+            return view('detail', ['get_detail' => $get_detail[0], 'get_relate' => $get_relate, 'get_ward' => $get_ward]);
+        } else {
+            return view('page_404');
+        }
+
     }
 
     public function get_post($id)
     {
         if ($id == 'ha-noi' || $id == 'tp-ho-chi-minh' || $id == 'da-nang') {
 
-            $region_array = array('ha-noi' => 'Hà Nội', 'tp-ho-chi-minh' => 'Tp Hồ Chí Minh', 'đa-nang' => 'Đà Nẵng');
+            $region_array = array('ha-noi' => 'Hà Nội', 'tp-ho-chi-minh' => 'Tp Hồ Chí Minh', 'da-nang' => 'Đà Nẵng');
             $region = $region_array[$id];
 
             $page = 1;
@@ -89,6 +133,7 @@ class HomeController extends Controller
             $page_limit = ($page - 1) * $limit;
 
             $query = '';
+
             $position = $region;
             $root_url = url("/") . '/' . $id . '?status=1';
             $list_area = DB::select(DB::raw("SELECT * FROM table_area WHERE parent=N'$region'"));
@@ -111,16 +156,28 @@ class HomeController extends Controller
                     $root_url = $root_url . '&ward_name=' . $ward;
                 }
             }
+
+            if(!empty($_GET['min_price']) || !empty($_GET['max_price'])) {
+                $min_price = $_GET['min_price'];
+                $max_price = $_GET['max_price'];
+                //var_dump($min_price);
+                $query .= "AND price >= $min_price AND price <= $max_price";
+                $root_url = $root_url."&min_price=$min_price&max_price=$max_price&";
+            }
+
             $value_post = array(
                 'list_area' => $list_area,
                 'list_ward' => $list_ward
             );
             //var_dump($area_name);
             $get_post = DB::select(DB::raw("SELECT * FROM nha_tro WHERE region_name = N'$region' AND stt=1 $query ORDER BY `created_at` DESC LIMIT $page_limit, $limit"));
+            //var_dump("SELECT * FROM nha_tro WHERE region_name = N'$region' AND stt=1 $query ORDER BY `created_at` DESC LIMIT $page_limit, $limit");
             $total = DB::select(DB::raw("SELECT COUNT(*) FROM nha_tro WHERE region_name = N'Hà Nội' $query"));
             $total = $total[0]->{'COUNT(*)'};
 
             return view('list-post', ['total' => $total, 'value_pos' => $value_post, 'position' => "Cho Thuê Phòng Trọ " . $position, 'region' => $id, 'current_page' => $page, 'value' => $get_post, 'root_url' => $root_url]);
+        }else{
+            return redirect('/');
         }
     }
 
@@ -135,7 +192,7 @@ class HomeController extends Controller
         $total = 0;
         $query = '';
         $text_title = "Không tìm thấy kết quả nào phù hợp";
-        $root_url = url("/").'/search';
+        $root_url = url("/") . '/search';
         $search = array();
         $value_post = array();
         $region = '';
@@ -144,13 +201,13 @@ class HomeController extends Controller
 
         if (!empty($_GET['keyword'])) {
             $keyword = $_GET['keyword'];
-            $root_url = $root_url.'/?keyword='.$keyword;
+            $root_url = $root_url . '/?keyword=' . $keyword;
             if (!empty($_GET['region_name'])) {
                 $region = $_GET['region_name'];
                 $region_name = $this->get_region($region);
                 $query .= "AND region_name = N'$region_name'";
                 $list_area = DB::select(DB::raw("SELECT * FROM table_area WHERE parent=N'$region_name'"));
-                $root_url .= '&region_name='.$region;
+                $root_url .= '&region_name=' . $region;
             }
             if (!empty($_GET['area_name'])) {
                 $area = $_GET['area_name'];
@@ -180,6 +237,6 @@ class HomeController extends Controller
             $text_title = "Tìm thấy " . number_format($total, 0, ",", ".") . " kết quả cho từ khóa: $keyword";
         }
 
-        return view('list-post', ['total' => $total, 'value_pos' => $value_post, 'keyword'=>$keyword,'region' => $region, 'position' => $text_title, 'current_page' => $page, 'value' => $search, 'root_url' => $root_url]);
+        return view('list-post', ['total' => $total, 'value_pos' => $value_post, 'keyword' => $keyword, 'region' => $region, 'position' => $text_title, 'current_page' => $page, 'value' => $search, 'root_url' => $root_url]);
     }
 }

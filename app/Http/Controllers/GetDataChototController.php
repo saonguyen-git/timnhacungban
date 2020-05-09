@@ -16,37 +16,30 @@ class GetDataChototController extends Controller
     {
         $this->helper = new HelperController();
     }
+    public function GetDataJob($page, $region){
 
-    public function GetData($id)
+    }
+    public function GetData($page, $region)
     {
-//        $get_page = $this->get_page();
-//        var_dump($get_page);
-//        $page = $get_page['page_number'];
-//        $id_page = $get_page['page_id'];
+        $url = "https://gateway.chotot.com/v1/public/ad-listing?region_v2=$region&cg=1050&limit=20&st=u,h&page=$page";
+        $result = $this->cUrl($url);
 
-        $page = 1;
-        $limit = 50;
-        $page_limit = ($page - 1) * $limit;
-        $user_agent = $this->get_user_agent();
-        $url = "https://gateway.chotot.com/v1/public/ad-listing?region_v2=$id&cg=1050&limit=$limit&o=$page_limit&st=u,h&page=$page";
-        $result = $this->helper->httprequest($url, 'GET', array('user-agent' => $user_agent));
-
-        if (!empty($result['msg'])) {
-            $json_rs = $result['msg'];
+        if (!empty($result)) {
+            $json_rs = $result;
+            $json_rs = json_encode($json_rs);
             $json_rs = json_decode($json_rs);
 
             foreach ($json_rs->ads as $json) {
                 try {
-
                     $id_product = $json->list_id;
                     $title = $json->subject;
                     $title = str_replace("'", '', $title);
                     $slug_title = $this->convert_name($title);
                     $slug = strtolower($slug_title);
-                    $slug = str_replace('/','-',$slug);
+                    $slug = str_replace('/', '-', $slug);
 
                     $body = '';
-                    if(!empty( $json->{'body'})) {
+                    if (!empty($json->{'body'})) {
                         $body = $json->{'body'};
                     }
 
@@ -57,17 +50,18 @@ class GetDataChototController extends Controller
                         $price = 0;
                     }
                     $account_name = $json->account_name;
-                    $check_product = DB::select(DB::raw("SELECT COUNT(*) FROM nha_tro WHERE id_product = '$id_product' AND title = N'$title'"));
+                    $check_product = DB::select(DB::raw("SELECT COUNT(*) FROM nha_tro WHERE id_product = '$id_product'"));
 
                     if (!empty($check_product[0]->{'COUNT(*)'})) {
                         var_dump('Product exist');
                     } else {
                         $url_info = "https://gateway.chotot.com/v1/public/ad-listing/$id_product";
-                        $get_info = $this->helper->httprequest($url_info, 'GET', array('user-agent' => $user_agent));
-                        if (!empty($get_info['msg'])) {
+                        $get_info = $this->cUrl($url_info);
+                        if (!empty($get_info)) {
 
-                            $info_str = $get_info['msg'];
-                            $info = json_decode($info_str);
+                            $info = $get_info;
+                            $info = json_encode($info);
+                            $info = json_decode($info);
                             $info = $info->ad;
                             $phone = $info->phone;
                             $size = '';
@@ -97,7 +91,7 @@ class GetDataChototController extends Controller
                             $website = 'chotot.com';
                             $created_at = date('Y/m/d H:i:s', str_replace(substr($info->list_time, -3), '', $info->list_time));
 
-                            DB::table("nha_tro")->insertOrIgnore([
+                            DB::table("nha_tro")->updateOrInsert([
                                 'id_product' => $id_product,
                                 'title' => $title,
                                 'slug' => $slug,
@@ -117,19 +111,129 @@ class GetDataChototController extends Controller
                                 'created_at' => $created_at
                             ]);
 
-
-                            var_dump('Insert db success full');
+                            var_dump("Insert $id_product db success full");
                         }
                     }
                 } catch (\Exception $exception) {
                     file_put_contents(public_path('/json-product.txt'), json_encode($json_rs->ads));
                 }
             }
-            //DB::table('page_chotot')->where('id', $id_page)->update(['checked' => 1]);
+            file_put_contents(public_path("/$region.txt"), $page);
+            var_dump('next page' . ($page + 1));
         } else {
             var_dump('mission false');
+            var_dump($result);
+            die();
         }
-       // $this->GetData();
+    }
+
+
+
+    public function GetDataMuaBan($page, $region)
+    {
+        $website = 'muaban.net';
+        if ($region == 1) {
+            $url = "https://muaban.net/nha-tro-phong-tro-ha-noi-l24-c3405?cp=$page";
+            $region_name = 'Hà Nội';
+        }
+        if ($region == 2) {
+            $url = "https://muaban.net/nha-tro-phong-tro-ho-chi-minh-l59-c3405?cp=$page";
+            $region_name = 'Tp Hồ Chí Minh';
+        }
+        $result = $this->helper->httprequest($url, "GET");
+        //var_dump($result);
+        if (!empty($result)) {
+            $html = str_get_html($result['msg']);
+            $list_item = $html->find("#list-box .list-item-container");
+            foreach ($list_item as $item) {
+                $link = $item->find('a.list-item__link', 0)->href;
+
+                $id = explode('-id', $link);
+                $id_post = $id[1];
+                $id_product = "id$id_post";
+
+                $check_product = DB::select(DB::raw("SELECT COUNT(*) FROM nha_tro WHERE id_product = '$id_product'"));
+
+                if (!empty($check_product[0]->{'COUNT(*)'})) {
+                    var_dump('Product exist');
+                } else {
+                    var_dump($link);
+                    $detail = $this->helper->httprequest($link, "GET");
+
+                    $html_detail = str_get_html($detail['msg']);
+
+                    $title = $html_detail->find('.detail-container__left h1.title', 0)->innertext;
+                    $title = trim($title);
+
+                    $slug_title = $this->convert_name($title);
+                    $slug = strtolower($slug_title);
+                    $slug = str_replace('/', '-', $slug);
+                    $body = $html_detail->find('.body-container', 0)->plaintext;
+                    $body = trim($body);
+                    $category = "Phòng trọ";
+                    $price = 0;
+                    if(!empty($html_detail->find('.price-container__value', 0))){
+                        $div_price = $html_detail->find('.price-container__value', 0)->plaintext;
+                        $price = str_replace('.', '', $div_price);
+                        $price = str_replace('đ', '', $price);
+                        $price = trim($price);
+                    }
+
+                    $account_name = $html_detail->find('.user-info__fullname', 0)->plaintext;
+                    $account_name = trim($account_name);
+                    $size=0;
+                    if(!empty($html_detail->find('.tect-content-block .tech-item .tech-item__value', 0))) {
+                        $size = $html_detail->find('.tect-content-block .tech-item .tech-item__value', 0)->plaintext;
+                        $size = str_replace('m²', '', $size);
+                        $size = trim($size);
+                    }
+                    $thumbnail = '';
+                    $slide = '';
+
+                    $address = '';
+                    if(!empty($html_detail->find('.tect-content-block .tech-item .tech-item__long-value', 0))) {
+                        $address = $html_detail->find('.tect-content-block .tech-item .tech-item__long-value', 0)->plaintext;
+                        $address = trim($address);
+                    }
+
+                    $ward_name = '';
+
+                    $area_name = $html_detail->find('.location-clock__location', 0)->plaintext;
+                    $area_name = trim($area_name);
+                    $area_name = str_replace('- ' . $region_name, '', $area_name);
+                    $area_name = trim($area_name);
+
+                    $created_at = $html_detail->find('.location-clock__clock', 0)->plaintext;
+                    $created_at = date('Y/m/d H:i:s', strtotime($created_at));
+
+                    if(!empty($html_detail->find('.mobile-container__value span', 0))){
+                        $phone = $html_detail->find('.mobile-container__value span', 0)->attr['mobile'];
+
+                        DB::table("nha_tro")->updateOrInsert([
+                            'id_product' => $id_product,
+                            'title' => $title,
+                            'slug' => $slug,
+                            'body' => $body,
+                            'category' => $category,
+                            'price' => $price,
+                            'phone' => $phone,
+                            'account_name' => $account_name,
+                            'size' => $size,
+                            'thumbnail' => $thumbnail,
+                            'slide' => $slide,
+                            'address' => $address,
+                            'ward_name' => $ward_name,
+                            'area_name' => $area_name,
+                            'region_name' => $region_name,
+                            'website' => $website,
+                            'created_at' => $created_at
+                        ]);
+                    }
+
+                    var_dump("Insert $id_product db success full");
+                }
+            }
+        }
     }
 
     public function get_page()
@@ -148,7 +252,6 @@ class GetDataChototController extends Controller
     function clean($string)
     {
         $string = str_replace(' ', '-', $string); // Replaces all spaces with hyphens.
-
         return preg_replace('/[^A-Za-z0-9\-]/', '', $string); // Removes special chars.
     }
 
@@ -265,7 +368,6 @@ class GetDataChototController extends Controller
         }
     }
 
-//Lấy user agent
     public function get_user_agent()
     {
         $db = DB::select("SELECT * FROM user_agent_list WHERE status != 404 and checked = 0 limit 0, 1");
@@ -280,8 +382,6 @@ class GetDataChototController extends Controller
                     $checked = 1;
                 }
             }
-            // check xem lấy user agent về trong chuỗi có 1 trong các từ được list ra từ biến $listkey hay không
-            //nếu có thì là useragent của mobile, amazon sẽ ra giao diện của mobile và khó craw dữ liệu hơn
             if ($checked == 1) {
                 DB::table('user_agent_list')->where('user_agent', $user_agent)->update(['checked' => 2]);
                 var_dump('mobile');
@@ -296,4 +396,22 @@ class GetDataChototController extends Controller
             $this->get_user_agent();
         }
     }
+
+    public function cUrl($url)
+    {
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_HEADER, 0);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+        curl_setopt($ch, CURLOPT_VERBOSE, 0);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        $response = curl_exec($ch);
+        curl_close($ch);
+        $data = json_decode($response);
+        $value = json_decode(json_encode($data), true);
+
+        return $value;
+    }
+
 }

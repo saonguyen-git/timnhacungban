@@ -2,17 +2,17 @@
 
 namespace App\Console\Commands;
 
-use App\Http\Controllers\GetDataChototController;
+use App\Http\Controllers\SiteMapController;
 use Illuminate\Console\Command;
 
-class RunAutoGetPost extends Command
+class SiteMap extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'run-auto';
+    protected $signature = 'site-map';
 
     /**
      * The console command description.
@@ -36,12 +36,8 @@ class RunAutoGetPost extends Command
      *
      * @return mixed
      */
-    public function handle(GetDataChototController $controller)
+    public function handle(SiteMapController $controller)
     {
-        $controller->GetData(1, 12000);
-        $controller->GetData(1, 13000);
-        $controller->GetData(1, 3017);
-//        $controller->GetDataMuaBan(1,1);
-//        $controller->GetDataMuaBan(1,2);
+        $controller->createSitemap();
     }
 }

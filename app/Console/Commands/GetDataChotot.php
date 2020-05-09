@@ -12,7 +12,7 @@ class GetDataChotot extends Command
      *
      * @var string
      */
-    protected $signature = 'get-data-chotot';
+    protected $signature = 'get-data-chotot {page} {region}';
 
     /**
      * The console command description.
@@ -38,9 +38,18 @@ class GetDataChotot extends Command
      */
     public function handle(GetDataChototController $controller)
     {
-        $id_list = array(12000,13000,3017);
-        foreach ($id_list as $id_region){
-            $controller->GetData($id_region);
+
+        $region = $this->argument('region');
+        $page = $this->argument('page');
+
+        if($page == 0) {
+            for ($i = 1; $i < 91; $i++) {
+                var_dump('page: '.$i);
+                $controller->GetData($i, $region);
+            }
+        }else{
+            $controller->GetData($page, $region);
         }
+
     }
 }

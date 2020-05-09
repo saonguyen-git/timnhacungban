@@ -4,17 +4,18 @@
             <div class="col-xs-12 col-sm-4 col-md-4 footer-item">
                 <h3>Tìm kiếm nhiều nhất</h3>
                 <ul>
-                    <li><a href="#">Tìm nhà trọ Hà Nội</a></li>
-                    <li><a href="#">Nhà trọ sinh viên</a></li>
-                    <li><a href="#">Cho thuê phòng trọ khép kín</a></li>
-                    <li><a href="#">Phòng trọ gần đại học tài chính</a></li>
-                    <li><a href="#">Phòng trọ Hà Nội dưới 1 triệu</a></li>
+                    <li><a href="{{url('/')}}/ha-noi" title="Tìm nhà trọ Hà Nội">Tìm nhà trọ Hà Nội</a></li>
+                    <li><a href="{{url('/')}}/da-nang" title="Tìm nhà trọ Đà Nẵng">Tìm nhà trọ Đà Nẵng</a></li>
+                    <li><a href="{{url('/')}}/tp-ho-chi-min" title="Tìm phòng trọ TP Hồ Chí Minh">Tìm phòng trọ TP Hồ Chí Minh</a></li>
+                    <li><a href="{{url('/')}}/search?keyword=Nhà%20trọ%20sinh%20viên" title="Nhà trọ sinh viên">Nhà trọ sinh viên</a></li>
+                    <li><a href="{{url('/')}}/search?keyword=Cho%20thuê%20phòng%20trọ%20khép%20kín" title="Cho thuê phòng trọ khép kín">Cho thuê phòng trọ khép kín</a></li>
+                    <li><a href="{{url('/')}}/search?keyword=Phòng%20trọ%20gần%20đại%20học%20tài%20chính" title="Phòng trọ gần đại học tài chính">Phòng trọ gần đại học tài chính</a></li>
+                    <li><a href="{{url('/')}}//ha-noi?filter=price&min_price=0&max_price=1000000" title="Phòng trọ Hà Nội dưới 1 triệu">Phòng trọ Hà Nội dưới 1 triệu</a></li>
                 </ul>
             </div>
             <div class="col-xs-12 col-sm-4 col-md-4 footer-item">
                 <h3>HỖ TRỢ KHÁCH HÀNG</h3>
                 <ul>
-                    <li><a href="#">Trung tâm trợ giúp</a></li>
                     <li><a href="#">An toàn mua bán</a></li>
                     <li><a href="#">Quy định cần biết</a></li>
                     <li><a href="#">Liên hệ hỗ trợ</a></li>
@@ -24,15 +25,18 @@
                 <h3>LIÊN KẾT VỚI CHÚNG TÔI</h3>
                 <ul>
                     <li><a href="tel:+84969664896">CSKH: 0969.664.896</a></li>
-                    <li><a href="#">Email: phongtrosinhvien@gmail.com</a></li>
+                    <li><a href="#">Email: hotro.timnhacungban@gmail.com</a></li>
                     <li><p>Mạng xã hội:</p></li>
                     <li>
-                        <a href="#" title="facebook"><img class="social lazyload"
-                                                          data-src="{{asset('/imgs/facebook.png')}}"/></a>
-                        <a href="#" title="youtube"><img class="social lazyload"
-                                                         data-src="{{asset('/imgs/youtube.png')}}"/></a>
-                        <a href="#" title="zalo"><img class="social lazyload"
-                                                      data-src="{{asset('/imgs/zalo.png')}}"/></a>
+                        <a href="https://www.facebook.com/timnhacungban.hanoi/" title="facebook">
+                            <img class="social lazyload" data-src="{{asset('/imgs/facebook.png')}}" alt="timnhacungban.com"/>
+                        </a>
+                        <a href="#" title="youtube">
+                            <img class="social lazyload" data-src="{{asset('/imgs/youtube.png')}}" alt="timnhacungban.com"/>
+                        </a>
+                        <a href="#" title="zalo">
+                            <img class="social lazyload" data-src="{{asset('/imgs/zalo.png')}}" alt="timnhacungban.com"/>
+                        </a>
                     </li>
                 </ul>
             </div>
@@ -41,7 +45,7 @@
 
 </footer>
 <div class="full-width text-center copyright">
-    <p>Copyright © 2020 phongtrosinhvien.com - design by Jorry Nguyen</p>
+    <p>Copyright © 2020 timnhacungban.com - design by Jorry Nguyen</p>
 </div>
 <script type="text/javascript" src="{{ asset('/js/jquery-2.2.4.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('/js/lazysizes.min.js') }}"></script>
@@ -109,7 +113,8 @@
         } else {
             location.href = "{{url('/')}}/search?keyword="+ search_box + value_region + value_area + url_ward;
         }
-    })
+    });
+
 </script>
 
 
